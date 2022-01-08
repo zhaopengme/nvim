@@ -1,0 +1,3 @@
+[submodule "lua/plugins/config/dap/jdtls/vscode-java-test"]
+	path = lua/plugins/config/dap/jdtls/vscode-java-test
+	url = https://github.com/microsoft/vscode-java-test.git
