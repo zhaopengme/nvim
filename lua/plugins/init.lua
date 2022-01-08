@@ -41,13 +41,13 @@ return packer.startup(function(use)
         event = 'BufWinEnter'
     }
     use {
-        'hoob3rt/lualine.nvim',
+        'nvim-lualine/lualine.nvim',
         disable = not is_enabled('lualine'),
         config = "require'plugins.config.lualine'",
         event = 'BufWinEnter'
     }
     use {
-        'glepnir/dashboard-nvim',
+        'goolord/alpha-nvim',
         disable = not is_enabled('dashboard'),
         config = "require'plugins.config.dashboard'",
         event = 'BufWinEnter'

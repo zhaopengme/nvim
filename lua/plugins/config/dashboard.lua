@@ -1,32 +1,45 @@
-vim.g.dashboard_custom_header = {[[__     __                           _   _       _           ]],
-                                 [[\ \   / /_ _ _ __   ___  _   _ _ __| \ | |_   _(_)_ __ ___  ]],
-                                 [[ \ \ / / _` | '_ \ / _ \| | | | '__|  \| \ \ / / | '_ ` _ \ ]],
-                                 [[  \ V / (_| | |_) | (_) | |_| | |  | |\  |\ V /| | | | | | |]],
-                                 [[   \_/ \__,_| .__/ \___/ \__,_|_|  |_| \_| \_/ |_|_| |_| |_|]],
-                                 [[            |_|                                             ]]}
+-- vim.g.dashboard_custom_header = {[[ ,=""=, ]], [[ c , _,{ ]], [[ /\  @ )                 __ ]],
+--                                  [[ /  ^~~^\          <=.,__/ '}= ]], [[ (_/ ,, ,,)          \_ _>_/~ ]],
+--                                  [[ ~\_(/-\)'-,_,_,_,-'(_)-(_)  ]]}
+-- vim.g.dashboard_default_executive = "telescope"
+-- vim.g.dashboard_custom_section = {
+--     f = {
+--         description = {"  Find File          "},
+--         command = "Telescope find_files"
+--     },
+--     s = {
+--         description = {"  Search Text        "},
+--         command = "Telescope live_grep"
+--     },
+--     r = {
+--         description = {"  Recent Files       "},
+--         command = "Telescope oldfiles"
+--     },
+--     e = {
+--         description = {"  Exit       "},
+--         command = "q"
+--     }
+-- }
+-- vim.g.dashboard_custom_footer = {"Do one thing, do it well - Unix philosophy"}
+local alpha = require("alpha")
+local dashboard = require("alpha.themes.dashboard")
 
-vim.g.dashboard_default_executive = "telescope"
+-- Set header
+dashboard.section.header.val = {",=\"\"=,                        ", "c , _,{                       ",
+                                "/\\  @ )                 __    ", "/  ^~~^\\          <=.,__/ '}= ",
+                                "(_/ ,, ,,)          \\_ _>_/~  ", "~\\_(/-\\)'-,_,_,_,-'(_)-(_)    "}
 
-vim.g.dashboard_custom_section = {
-    a = {
-        description = {"  Find File          "},
-        command = "Telescope find_files"
-    },
-    d = {
-        description = {"  Search Text        "},
-        command = "Telescope live_grep"
-    },
-    b = {
-        description = {"  Recent Files       "},
-        command = "Telescope oldfiles"
-    },
-    e = {
-        description = {"  Config             "},
-        command = "edit ~/.config/nvim/lua/user-config/init.lua"
-    },
-    f = {
-        description = {"  Git                "},
-        command = "LazyGit"
-    }
-}
-vim.g.dashboard_custom_footer = {"Do one thing, do it well - Unix philosophy"}
+-- Set menu
+dashboard.section.buttons.val = {dashboard.button("f", "  > Find File", ":Telescope find_files<CR>"),
+                                 dashboard.button("r", "  > Recent Files", ":Recent Files<CR>"),
+                                 dashboard.button("s", "  > Search Text", ":Telescope live_grep<CR>"),
+                                 dashboard.button("e", "  > New File", ":enew <CR>"),
+                                 dashboard.button("q", "  > Quit NVIM", ":qa<CR>")}
+
+local fortune = require("alpha.fortune")
+dashboard.section.footer.val = fortune()
+
+alpha.setup(dashboard.opts)
+
+-- Send config to alpha
+alpha.setup(dashboard.opts)
