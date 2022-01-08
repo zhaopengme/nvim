@@ -46,7 +46,8 @@ function M.setup()
     local jdtls_path = vim.fn.stdpath "data" .. "/lsp_servers/jdtls"
     local config_path = home .. "/.config/nvim/lua/plugins/config/dap/jdtls"
 
-    local bundles = {vim.fn.glob(config_path .. "/java-debug/com.microsoft.java.debug.plugin-*.jar")}
+    local bundles = {vim.fn.glob(config_path ..
+                                     "/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")}
     vim.list_extend(bundles, vim.split(vim.fn.glob(config_path .. "/vscode-java-test/server/*.jar"), "\n"))
     vim.list_extend(bundles, vim.split(vim.fn.glob(config_path .. "/vscode-java-decompiler/server/*.jar"), "\n"))
     local extendedClientCapabilities = {
