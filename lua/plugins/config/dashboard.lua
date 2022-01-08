@@ -31,7 +31,7 @@ dashboard.section.header.val = {",=\"\"=,                        ", "c , _,{    
 
 -- Set menu
 dashboard.section.buttons.val = {dashboard.button("f", "  > Find File", ":Telescope find_files<CR>"),
-                                 dashboard.button("r", "  > Recent Files", ":Recent Files<CR>"),
+                                 dashboard.button("r", "  > Recent Files", ":Telescope oldfiles<CR>"),
                                  dashboard.button("s", "  > Search Text", ":Telescope live_grep<CR>"),
                                  dashboard.button("e", "  > New File", ":enew <CR>"),
                                  dashboard.button("q", "  > Quit NVIM", ":qa<CR>")}
