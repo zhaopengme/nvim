@@ -244,6 +244,14 @@ return packer.startup(function(use)
 	})
 
 	use("ggandor/lightspeed.nvim")
+
+	-- lua with packer.nvim
+	use({
+		"max397574/better-escape.nvim",
+		config = function()
+			require("better_escape").setup()
+		end,
+	})
 	for _, plugin in pairs(Modx.plugins.user) do
 		use(plugin)
 	end
