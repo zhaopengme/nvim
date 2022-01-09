@@ -55,6 +55,15 @@ local mappings = {
         s = {"<cmd>lua require'dap'.continue()<cr>", "Start"},
         q = {"<cmd>lua require'dap'.stop()<cr>", "Quit"}
     },
+    s = {
+        name = "Search Replace",
+        s = {"<cmd>Telescope live_grep<cr>", "Search Text"},
+        r = {"<cmd>lua require('spectre').open()<cr>", "Search Replace"},
+        w = {"<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Search Curent Word"},
+        c = {"<cmd>lua require('spectre').open_file_search()<cr>", "Search Curent File"},
+        -- r = {"<cmd>lua require('spectre').toggle_line()<CR>", "Replace"},
+        a = {"<cmd>lua require('spectre.actions').run_replace()<cr>", "Replace All"}
+    },
     z = {
         name = "Focus",
         z = {":ZenMode<cr>", "Toggle Zen Mode"},
@@ -74,9 +83,8 @@ if Modx.plugins.telescope.enabled then
     mappings.f = {
         name = "Telescope",
         f = {"<cmd>Telescope find_files<cr>", "Find Files"},
-        s = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
-        b = {"<cmd>Telescope buffers<cr>", "Buffers"},
-        r = {"<cmd>Telescope oldfiles<cr>", "Recent Files"}
+        r = {"<cmd>Telescope oldfiles<cr>", "Recent Files"},
+        b = {"<cmd>Telescope buffers<cr>", "Buffers"}
     }
 end
 
