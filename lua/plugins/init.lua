@@ -71,6 +71,7 @@ return packer.startup(function(use)
 		cmd = "ZenMode",
 	})
 
+	use({ "mangeshrex/uwu.vim" })
 	-- Tree-Sitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -240,6 +241,8 @@ return packer.startup(function(use)
 		event = "BufRead",
 		config = "require'plugins.config.copilot'",
 	})
+
+	use("ggandor/lightspeed.nvim")
 	for _, plugin in pairs(Modx.plugins.user) do
 		use(plugin)
 	end

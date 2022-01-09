@@ -40,7 +40,7 @@ local mappings = {
 	},
 	d = {
 		name = "Debug",
-		r = { '<Cmd>lua require"dap".repl.toggle()<CR>', "repl" },
+		r = { '<Cmd>lua require"dap"arepl.toggle()<CR>', "repl" },
 		d = { '<Cmd>lua require"dapui".toggle()<CR>', "dapui" },
 		b = { '<Cmd>lua require"dap".toggle_breakpoint()<CR>', "breakpoint" },
 		c = { '<Cmd>lua require"dap".continue()<CR>', "continue" },
