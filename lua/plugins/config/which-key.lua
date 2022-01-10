@@ -23,10 +23,9 @@ local mappings = {
 		N = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
 		o = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" },
 	},
-	x = { ":bdelete<cr>", "Close Buffer" },
-	X = { ":bdelete!<cr>", "Force Close Buffer" },
-	q = { ":q<cr>", "Quit" },
-	Q = { ":q!<cr>", "Force Quit" },
+	-- x = { ":bdelete<cr>", "Close Buffer" },
+	x = { ":BufferLineCloseLeft<cr>:BufferLineCloseRight<cr>", "Close Other Buffers" },
+	q = { ":q!<cr>", "Force Quit" },
 	w = { ":w<cr>", "Write" },
 	E = { ":e ~/.config/nvim/lua/vapour/user-config/init.lua<cr>", "Edit User Config" },
 	p = {
@@ -55,6 +54,7 @@ local mappings = {
 		s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
 		q = { "<cmd>lua require'dap'.stop()<cr>", "Stop" },
+		v = { "<cmd>lua require'dapui'.toggle()<cr>", "dapui" },
 	},
 	s = {
 		name = "Search Replace",
