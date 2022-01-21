@@ -21,7 +21,6 @@ local mappings = {
 		e = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Show line diagnostics" },
 		n = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Go to next diagnostic" },
 		N = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Go to previous diagnostic" },
-		o = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" },
 	},
 	-- x = { ":bdelete<cr>", "Close Buffer" },
 	x = { ":BufferLineCloseLeft<cr>:BufferLineCloseRight<cr>", "Close Other Buffers" },
@@ -56,6 +55,13 @@ local mappings = {
 		q = { "<cmd>lua require'dap'.stop()<cr>", "Stop" },
 		v = { "<cmd>lua require'dapui'.toggle()<cr>", "dapui" },
 	},
+	c = {
+		name = "Code",
+		x = { "<cmd>TroubleToggle<CR>", "TroubleToggle" },
+		q = { "<cmd>TroubleToggle quickfix<CR>", "TroubleToggle quickfix" },
+		o = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" },
+	},
+
 	s = {
 		name = "Search Replace",
 		s = { "<cmd>Telescope live_grep<cr>", "Search Text" },
