@@ -95,7 +95,7 @@ else
 			treesitter = {
 				enabled = true,
 				ensure_installed = "all",
-				ignore_install = {},
+				ignore_install = {'phpdoc'},
 				indent = {
 					enable = false,
 				},
