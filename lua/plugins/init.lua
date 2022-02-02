@@ -269,4 +269,6 @@ return packer.startup(function(use)
 			})
 		end,
 	})
+
+	use({ "mg979/vim-visual-multi" })
 end)
