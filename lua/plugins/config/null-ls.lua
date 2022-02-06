@@ -19,10 +19,10 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.mypy,
 		null_ls.builtins.diagnostics.shellcheck,
 		-- null_ls.builtins.formatting.google_java_format,
-		null_ls.builtins.formatting.prettier.with({
-			-- milliseconds
-			timeout = 10000,
-		}),
+		-- null_ls.builtins.formatting.prettier.with({
+		-- 	-- milliseconds
+		-- 	timeout = 10000,
+		-- }),
 	},
 	log = {
 		use_console = true,
