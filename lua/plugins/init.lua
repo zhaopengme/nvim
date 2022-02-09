@@ -192,8 +192,7 @@ return packer.startup(function(use)
 		config = "require'plugins.config.telescope'",
 	})
 	use({
-		"kyazdani42/nvim-tree.lua",
-		cmd = "NvimTreeToggle",
+		"luukvbaal/nnn.nvim",
 		disable = not is_enabled("nvim_tree"),
 		config = "require'plugins.config.nvimtree'",
 	})

@@ -79,7 +79,7 @@ local mappings = {
 }
 
 if Modx.plugins.nvim_tree.enabled then
-	mappings.e = { ":NvimTreeToggle<cr>", "File Explorerer" }
+	mappings.e = { ":NnnExplorer<cr>", "File Explorerer" }
 end
 
 if Modx.plugins.dashboard.enabled then
