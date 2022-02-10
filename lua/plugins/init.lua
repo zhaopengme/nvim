@@ -191,12 +191,14 @@ return packer.startup(function(use)
 		disable = not is_enabled("telescope"),
 		config = "require'plugins.config.telescope'",
 	})
-	use({
-		"luukvbaal/nnn.nvim",
-		disable = not is_enabled("nvim_tree"),
-		config = "require'plugins.config.nvimtree'",
-	})
-
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        },
+        disable = not is_enabled("nvim_tree"),
+        config = "require'plugins.config.nvimtree'",
+    }
 	use("stevearc/dressing.nvim")
 
 	use({
