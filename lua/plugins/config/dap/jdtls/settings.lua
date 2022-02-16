@@ -105,7 +105,7 @@ local M = {
 				-- },
 				{
 					name = "JavaSE-1.8",
-					path = "/Users/zhaopeng/.sdkman/candidates/java/8.0.292.j9-adpt",
+					path = "/Users/zhaopeng/.sdkman/candidates/java/8.0.312-zulu",
 					default = true,
 				},
 			},

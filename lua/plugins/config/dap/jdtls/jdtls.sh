@@ -21,6 +21,7 @@ case Linux in
 esac
 
 JAR="$JDTLS_PATH/plugins/org.eclipse.equinox.launcher_*.jar"
+JAVA_HOME="/Users/zhaopeng/.sdkman/candidates/java/11.0.13.fx-zulu"
 
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
@@ -45,6 +46,7 @@ location of your Java installation."
 fi
 
   # -Xbootclasspath/a:/home/hewenjin/.local/share/nvim/lspinstall/java/lombok.jar \
+
 "$JAVACMD" \
   --add-modules=ALL-SYSTEM \
   --add-opens java.base/java.util=ALL-UNNAMED \
