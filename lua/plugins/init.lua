@@ -46,12 +46,12 @@ return packer.startup(function(use)
         config = "require'plugins.config.lualine'",
         event = "BufWinEnter"
     })
-    -- use({
-    --     "goolord/alpha-nvim",
-    --     disable = not is_enabled("dashboard"),
-    --     config = "require'plugins.config.dashboard'",
-    --     event = "BufWinEnter"
-    -- })
+    use({
+        "goolord/alpha-nvim",
+        disable = not is_enabled("dashboard"),
+        config = "require'plugins.config.dashboard'",
+        event = "BufWinEnter"
+    })
     use({
         "lukas-reineke/indent-blankline.nvim",
         -- disable = not is_enabled("indent_blankline"),
