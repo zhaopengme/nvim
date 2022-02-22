@@ -151,7 +151,7 @@ else
         settings = {
             -- If true, :w -> :w!
             always_force_write = false,
-            colorscheme = "uwu",
+            colorscheme = "gruvbox",
             lualine_colorscheme = "gruvbox",
             transparent_bg = false
         }
