@@ -52,7 +52,7 @@ local mappings = {
 		r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
 		s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
 		l = { "<cmd>lua require'dap'.run_last()<cr>", "Run Last" },
-		q = { "<cmd>lua require'dap'.stop()<cr>", "Stop" },
+		q = { "<cmd>lua require'dap'.close()<cr>", "Stop" },
 		v = { "<cmd>lua require'dapui'.toggle()<cr>", "dapui" },
 	},
 	c = {
