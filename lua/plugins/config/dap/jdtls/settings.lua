@@ -100,15 +100,15 @@ local M = {
 			--     globalSettings = "/usr/local/Cellar/maven@3.5/3.5.4_1/libexec/conf/settings.xml"
 			-- },
 			runtimes = {
-				{
-					name = "JavaSE-11",
-					path = "/Users/zhaopeng/.sdkman/candidates/java/11.0.13.fx-zulu/zulu-11.jdk/Contents/Home/",
-				},
 				-- {
-				-- 	name = "JavaSE-1.8",
-				-- 	path = "/Users/zhaopeng/.sdkman/candidates/java/8.0.312-zulu/zulu-8.jdk/Contents/Home",
-				-- 	default = true,
+				-- 	name = "JavaSE-11",
+				-- 	path = "/Users/zhaopeng/.sdkman/candidates/java/11.0.13.fx-zulu/zulu-11.jdk/Contents/Home/",
 				-- },
+				{
+					name = "JavaSE-1.8",
+					path = "/Users/zhaopeng/.sdkman/candidates/java/8.0.312-zulu/zulu-8.jdk/Contents/Home",
+					-- default = true,
+				},
 			},
 		},
 	},
