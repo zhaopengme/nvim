@@ -123,13 +123,12 @@ return packer.startup(function(use)
         "tiagovla/tokyodark.nvim",
         opt = true
     })
-
-    -- LSP and Autocomplete
     use({
-        "neovim/nvim-lspconfig",
-        event = "BufRead"
+        "Mofiqul/vscode.nvim",
+        opt = true
     })
-    use({"williamboman/nvim-lsp-installer"})
+    -- LSP and Autocomplete
+    use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
     use({"onsails/lspkind-nvim"})
     use({
         "hrsh7th/nvim-cmp",
@@ -191,13 +190,13 @@ return packer.startup(function(use)
         disable = not is_enabled("telescope"),
         config = "require'plugins.config.telescope'"
     })
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {'kyazdani42/nvim-web-devicons' -- optional, for file icon
+    use({
+        "kyazdani42/nvim-tree.lua",
+        requires = {"kyazdani42/nvim-web-devicons" -- optional, for file icon
         },
         disable = not is_enabled("nvim_tree"),
         config = "require'plugins.config.nvimtree'"
-    }
+    })
     use("stevearc/dressing.nvim")
 
     use({
