@@ -18,6 +18,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.codespell,
 		null_ls.builtins.diagnostics.mypy,
 		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.diagnostics.pydocstyle.with({
+			extra_args = { "--config=$ROOT/setup.cfg" },
+		}),
 		-- null_ls.builtins.formatting.google_java_format,
 		-- null_ls.builtins.formatting.prettier.with({
 		-- 	-- milliseconds
