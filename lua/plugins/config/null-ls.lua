@@ -32,7 +32,7 @@ null_ls.setup({
 	},
 	on_attach = function(client)
 		-- autoformat on save
-		if client.resolved_capabilities.document_formatting then
+		if client.server_capabilities.document_formatting then
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 			-- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
 		end

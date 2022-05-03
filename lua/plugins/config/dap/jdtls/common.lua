@@ -38,16 +38,16 @@ function M.setup(client, bufnr)
 	-- M.set_keymap(bufnr, 'v', '<leader>ca', ":<C-u>'<,'>Telescope lsp_range_code_actions layout_config={height=20,width=70}<CR>", opts)
 	-- M.set_keymap(bufnr, 'n', '<leader>cr', "<Cmd>lua require('jdtls').code_action(false, 'refactor')<CR>", opts)
 	-- -- Set some keybinds conditional on server capabilities
-	-- if client.resolved_capabilities.document_formatting then
+	-- if client.server_capabilities.document_formatting then
 	--   M.set_keymap(bufnr, "n", "<leader>mm", "<cmd>lua vim.lsp.buf.formatting()<CR>",
 	--                  opts)
-	-- elseif client.resolved_capabilities.document_range_formatting then
+	-- elseif client.server_capabilities.document_range_formatting then
 	--   M.set_keymap(bufnr, "n", "<leader>mm",
 	--                  "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
 	-- end
 
 	-- Set autocommands conditional on server_capabilities
-	if client.resolved_capabilities.document_highlight then
+	if client.server_capabilities.document_highlight then
 		vim.api.nvim_exec(
 			[[
     augroup lsp_document_highlight
