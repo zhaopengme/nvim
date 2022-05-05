@@ -1,5 +1,21 @@
 local null_ls = Modx.utils.plugins.require("null-ls")
 
+
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(clients)
+            -- filter out clients that you don't want to use
+            return vim.tbl_filter(function(client)
+                return client.name ~= "tsserver"
+            end, clients)
+        end,
+        bufnr = bufnr,
+    })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 null_ls.setup({
 	debug = false,
 	sources = {
@@ -21,6 +37,9 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.pydocstyle.with({
 			extra_args = { "--config=$ROOT/setup.cfg" },
 		}),
+        null_ls.builtins.formatting.rustfmt.with({
+            extra_args = { "--edition=2021" }
+        })
 		-- null_ls.builtins.formatting.google_java_format,
 		-- null_ls.builtins.formatting.prettier.with({
 		-- 	-- milliseconds
@@ -31,10 +50,15 @@ null_ls.setup({
 		use_console = true,
 	},
 	on_attach = function(client)
-		-- autoformat on save
-		if client.server_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
-			-- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-		end
+        if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                lsp_formatting(bufnr)
+            end,
+        })
+        end
 	end,
 })
