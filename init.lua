@@ -1,0 +1,7 @@
+require "settings"
+require "plugins"
+require "lsp"
+require "mappings"
+require "keybindings"
+require "autocmds"
+require "commands"
