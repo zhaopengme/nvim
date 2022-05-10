@@ -60,7 +60,7 @@ nvimtree.setup({
 	ignore_ft_on_setup = {},
 	open_on_tab = false,
 	hijack_cursor = false,
-	update_cwd = false,
+	update_cwd = true,
 	diagnostics = {
 		enable = false,
 		icons = {
