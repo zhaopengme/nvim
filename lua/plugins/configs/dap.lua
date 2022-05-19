@@ -1,15 +1,14 @@
-local ok, dap = pcall(require, 'dap')
+local ok, dap = pcall(require, "dap")
 if not ok then
-    return
+	return
 end
 
-require('plugins.configs.dapui')
+require("plugins.configs.dapui")
 
-local dap_languages = {"rust", "node2", "go"}
+local dap_languages = { "rust", "node2", "go", "java" }
 for _, language in pairs(dap_languages) do
-
-    -- local dap_config = vim.fn.stdpath "config" .. '/lua/dap/' .. language .. '.lua'
-    require('dap.' .. language).setup(dap)
+	-- local dap_config = vim.fn.stdpath "config" .. '/lua/dap/' .. language .. '.lua'
+	require("dap." .. language).setup(dap)
 end
 
 -- -- jdtls special operation
