@@ -199,6 +199,8 @@ return packer.startup(function(use)
 		config = require("plugins.configs.toggleterm"),
 	})
 
+	use({ "mfussenegger/nvim-jdtls" })
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
