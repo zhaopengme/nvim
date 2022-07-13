@@ -46,21 +46,21 @@ end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local lsp_formatting = function(bufnr)
-	vim.lsp.buf.format({
-		bufnr = bufnr,
-		filter = function(clients)
-			return vim.tbl_filter(function(client)
-				if client.name == "eslint" then
-					return true
-				end
-				if client.name == "null-ls" then
-					return not utils.table.some(clients, function(_, other_client)
-						return other_client.name == "eslint"
-					end)
-				end
-			end, clients)
-		end,
-	})
+  local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+     vim.lsp.buf.format({
+        bufnr = bufnr,
+        filter = function(client)
+            if client.name == 'eslint' then
+                return true
+            end
+
+            if client.name == 'null-ls' then
+                return not utils.table.some(clients, function(_, other_client)
+                    return other_client.name == 'eslint'
+                end)
+            end
+        end,
+    })
 end
 
 local opts = {
