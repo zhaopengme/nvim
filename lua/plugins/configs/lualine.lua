@@ -84,7 +84,7 @@ end
 
 ins_left {
     function()
-        vim.api.nvim_command("hi LualineViModeStart guibg=" .. mode_color[vim.fn.mode()])
+        vim.api.nvim_command("hi LualineViModeStart bg=" .. mode_color[vim.fn.mode()])
         return " "
     end,
     color = "LualineViModeStart",
@@ -94,11 +94,10 @@ ins_left {
 ins_left {
     function()
         vim.api.nvim_command(
-            "hi LualineViMode guifg="
+            "hi LualineViMode fg="
                 .. mode_color[vim.fn.mode()]
-                .. " guibg="
+                .. " bg="
                 .. colors.grey14
-                .. " gui=bold cterm=bold"
         )
         return require("lualine.utils.mode").get_mode()
     end,
@@ -125,7 +124,7 @@ ins_left {
 ins_left {
     "filename",
     cond = conditions.buffer_not_empty,
-    color = { fg = colors.grey9, gui = "italic" },
+    color = { fg = colors.grey9 },
 }
 
 ins_left {
@@ -135,9 +134,6 @@ ins_left {
     color = { fg = colors.grey9 },
 }
 
--- ins_left { "location", icon = "", color = { fg = colors.grey9 } }
-
--- ins_left { "progress", color = { fg = colors.grey9, gui = "bold" } }
 
 ins_left {
     "diagnostics",
@@ -217,7 +213,7 @@ ins_right {
     "branch",
     icon = "",
     cond = conditions.check_git_workspace,
-    color = { fg = colors.magenta, bg = colors.grey14, gui = "bold" },
+    color = { fg = colors.magenta, bg = colors.grey14},
 }
 
 ins_right {
@@ -232,7 +228,7 @@ ins_right {
 
 ins_right {
     function()
-        vim.api.nvim_command("hi LualineViModeEnd guibg=" .. mode_color[vim.fn.mode()])
+        vim.api.nvim_command("hi LualineViModeEnd bg=" .. mode_color[vim.fn.mode()])
         return " "
     end,
     color = "LualineViModeEnd",
@@ -251,7 +247,7 @@ ins_left_inactive {
 ins_left_inactive {
     "filename",
     cond = conditions.buffer_not_empty,
-    color = { fg = colors.grey9, bg = colors.grey14, gui = "bold" },
+    color = { fg = colors.grey9, bg = colors.grey14},
 }
 
 ins_left_inactive {
