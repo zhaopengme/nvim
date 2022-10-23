@@ -305,6 +305,21 @@ local config = {
                         }
                     }
                 end
+            }, {
+                'samodostal/image.nvim',
+                requires = {'nvim-lua/plenary.nvim'},
+                config = function()
+                    require('image').setup {
+                        render = {
+                            min_padding = 5,
+                            show_label = true,
+                            use_dither = true,
+                            foreground_color = false,
+                            background_color = false
+                        },
+                        events = {update_on_nvim_resize = true}
+                    }
+                end
             }
         },
         -- All other entries override the require("<key>").setup({...}) call for default plugins
@@ -316,20 +331,20 @@ local config = {
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
             -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
             config.sources = {
-              -- null_ls.builtins.formatting.eslint_d,
-              -- null_ls.builtins.code_actions.eslint_d,
-              -- null_ls.builtins.diagnostics.eslint_d,
-              -- null_ls.builtins.diagnostics.luacheck,
-              -- null_ls.builtins.diagnostics.mypy,
-              -- null_ls.builtins.code_actions.shellcheck,
-              -- null_ls.builtins.completion.tags,
-              -- null_ls.builtins.formatting.markdownlint,
-              -- null_ls.builtins.formatting.prettier,
-              -- null_ls.builtins.formatting.terrafmt,
-              -- null_ls.builtins.formatting.terraform_fmt,
-              -- null_ls.builtins.formatting.gofumpt,
-              -- null_ls.builtins.formatting.shfmt,
-              -- null_ls.builtins.diagnostics.tsc,
+                -- null_ls.builtins.formatting.eslint_d,
+                -- null_ls.builtins.code_actions.eslint_d,
+                -- null_ls.builtins.diagnostics.eslint_d,
+                -- null_ls.builtins.diagnostics.luacheck,
+                -- null_ls.builtins.diagnostics.mypy,
+                -- null_ls.builtins.code_actions.shellcheck,
+                -- null_ls.builtins.completion.tags,
+                -- null_ls.builtins.formatting.markdownlint,
+                -- null_ls.builtins.formatting.prettier,
+                -- null_ls.builtins.formatting.terrafmt,
+                -- null_ls.builtins.formatting.terraform_fmt,
+                -- null_ls.builtins.formatting.gofumpt,
+                -- null_ls.builtins.formatting.shfmt,
+                -- null_ls.builtins.diagnostics.tsc,
             }
             return config -- return final config table
         end,
