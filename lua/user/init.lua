@@ -13,7 +13,7 @@ local config = {
   },
 
   -- colorscheme = "default_theme",
-  colorscheme = "default_theme",
+  colorscheme = "dayfox",
   highlights = {
     -- init = { -- this table overrides highlights in all themes
     --   Normal = { bg = "#000000" },
@@ -192,13 +192,14 @@ local config = {
         desc = "Sort by tabs",
       },
       ["<leader>lt"] = { "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
-
+      ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "ToggleTerm" },
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
     },
     t = {
       -- setting a mapping to false will disable it
       -- ["<esc>"] = false,
+      ["<C-\\>"] = { "<cmd>ToggleTerm<cr>", desc = "ToggleTerm" },
     },
   },
 
@@ -274,6 +275,38 @@ local config = {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
         config = function() require("trouble").setup {} end,
+      },
+      {
+        "EdenEast/nightfox.nvim",
+        config = function()
+          require("nightfox").setup {
+            -- disable extra plugins that AstroNvim doesn't use (this is optional)
+            modules = {
+              barbar = false,
+              dashboard = false,
+              fern = false,
+              fidget = false,
+              gitgutter = false,
+              glyph_palette = false,
+              illuminate = false,
+              lightspeed = false,
+              lsp_saga = false,
+              lsp_trouble = false,
+              modes = false,
+              neogit = false,
+              nvimtree = false,
+              pounce = false,
+              sneak = false,
+              symbols_outline = false,
+            },
+            groups = {
+              all = {
+                -- add highlight group for AstroNvim's built in URL highlighting
+                HighlightURL = { style = "underline" },
+              },
+            },
+          }
+        end,
       },
     },
     -- All other entries override the require("<key>").setup({...}) call for default plugins
