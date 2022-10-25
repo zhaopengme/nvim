@@ -1,3 +1,5 @@
+
+
 local config = {
     updater = {
         remote = "origin", -- remote to use
@@ -521,7 +523,7 @@ local config = {
         ["mason-lspconfig"] = { -- overrides `require("mason-lspconfig").setup(...)`
             ensure_installed = {
                 "cssls", "html", "jsonls", "tsserver", "sumneko_lua",
-                "marksman", "pyright", "tailwindcss", "volar"
+                "marksman", "pyright", "tailwindcss", "volar","jdtls"
             },
             automatic_installation = true
         },
@@ -588,7 +590,11 @@ local config = {
                         ["s"] = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
                         ["q"] = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
                         ["x"] = { "<cmd>lua require'dapui'.toggle()<CR>", "Toggle debug UI" },
-                      },
+                    },
+                    ["l"] = {
+                        name = "Lsp",
+                        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
+                    },
                 }
             }
         }
