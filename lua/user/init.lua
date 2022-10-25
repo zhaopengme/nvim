@@ -333,7 +333,137 @@ local config = {
                         events = {update_on_nvim_resize = true}
                     }
                 end
-            }
+            },
+            {
+                "mfussenegger/nvim-dap",
+                config = function()
+                  local dap = require "dap"
+                  dap.adapters = {
+                    python = {
+                      type = "executable",
+                      command = "/usr/bin/python3",
+                      args = { "-m", "debugpy.adapter" },
+                    },
+                    cppdbg = {
+                      id = "cppdbg",
+                      type = "executable",
+                      name = "cppdbg",
+                      command = "OpenDebugAD7",
+                    },
+                    lldb = {
+                      type = "executable",
+                      command = "/usr/lib/llvm-10/bin/lldb-vscode", -- adjust as needed, must be absolute path
+                      name = "lldb",
+                    },
+                  }
+                  dap.configurations = {
+                    python = {
+                      {
+                        type = "python",
+                        request = "launch",
+                        name = "Launch file",
+                        program = "${file}",
+                        pythonPath = function() return "/usr/bin/python3" end,
+                      },
+                    },
+                    cpp = {
+                      {
+                        name = "Launch file",
+                        type = "cppdbg",
+                        request = "launch",
+                        program = function() return vim.fn.input("Path to executable: ", vim.fn.expand "%:p" .. "/", "file") end,
+                        cwd = "${workspaceFolder}",
+                        stopOnEntry = true,
+                        setupCommands = {
+                          {
+                            description = "Enable pretty-printing",
+                            text = "-enable-pretty-printing",
+                            ignoreFailures = false,
+                          },
+                        },
+                        runInTerminal = true,
+                      },
+                    },
+                  }
+                  -- get notify
+                  local function start_session(_, _)
+                    local info_string = string.format("%s", dap.session().config.program)
+                    vim.notify(info_string, "debug", { title = "Debugger Started", timeout = 500 })
+                  end
+
+                  local function terminate_session(_, _)
+                    local info_string = string.format("%s", dap.session().config.program)
+                    vim.notify(info_string, "debug", { title = "Debugger Terminated", timeout = 500 })
+                  end
+
+                  dap.listeners.after.event_initialized["dapui"] = start_session
+                  dap.listeners.before.event_terminated["dapui"] = terminate_session
+                  -- Define symbols
+                  vim.fn.sign_define("DapStopped", { text = "", texthl = "DiagnosticWarn" })
+                  vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticInfo" })
+                  vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticError" })
+                  vim.fn.sign_define("DapBreakpointCondition", { text = "", texthl = "DiagnosticInfo" })
+                  vim.fn.sign_define("DapLogPoint", { text = ".>", texthl = "DiagnosticInfo" })
+                end,
+              },
+              {
+                "rcarriga/nvim-dap-ui",
+                after = "nvim-dap",
+                config = function()
+                  -- require("dapui").setup()
+                  local dap, dapui = require "dap", require "dapui"
+                  dapui.setup {
+                    icons = { expanded = "▾", collapsed = "▸" },
+                    mappings = {
+                      expand = "<cr>",
+                      open = "o",
+                      remove = "d",
+                      edit = "e",
+                      repl = "r",
+                      toggle = "t",
+                    },
+                    layouts = {
+                      {
+                        elements = {
+                          { id = "watches", size = 0.5 },
+                          { id = "scopes", size = 0.5 },
+                          { id = "breakpoints", size = 0.25 },
+                          { id = "stacks", size = 0.25 },
+                        },
+                        size = 40,
+                        position = "left",
+                      },
+                      {
+                        elements = { "repl" },
+                        size = 10,
+                        position = "bottom",
+                      },
+                    },
+                    floating = {
+                      border = "single",
+                      mappings = {
+                        close = { "q", "<esc>" },
+                      },
+                    },
+                    windows = { indent = 1 },
+                  }
+                  -- add listeners to auto open DAP UI
+                  dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
+                  -- dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
+                  -- dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+                end,
+              },
+              {
+                "theHamsta/nvim-dap-virtual-text",
+                after = "nvim-dap",
+                config = function() require("nvim-dap-virtual-text").setup() end,
+              },
+              {
+                'leoluz/nvim-dap-go',
+                after = "nvim-dap",
+                config = function() require('dap-go').setup() end,
+              }
+
         },
         -- All other entries override the require("<key>").setup({...}) call for default plugins
         ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
@@ -416,7 +546,26 @@ local config = {
                 ["<leader>"] = {
                     -- third key is the key to bring up next level and its displayed
                     -- group name in which-key top level menu
-                    ["b"] = {name = "Buffer"}
+                    ["d"] = {
+                        name = "Debug",
+                        ["t"] = {
+                          "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+                          "Toggle Breakpoint",
+                        },
+                        ["b"] = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+                        ["c"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+                        ["C"] = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
+                        ["d"] = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+                        ["g"] = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+                        ["i"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+                        ["o"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+                        ["u"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+                        ["p"] = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
+                        ["r"] = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+                        ["s"] = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+                        ["q"] = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+                        ["x"] = { "<cmd>lua require'dapui'.toggle()<CR>", "Toggle debug UI" },
+                      },
                 }
             }
         }
