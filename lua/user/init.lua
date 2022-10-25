@@ -130,6 +130,7 @@ local config = {
         servers = {
             -- "pyright"
         },
+        skip_setup = { "jdtls" },
         formatting = {
             -- control auto formatting on save
             format_on_save = {
