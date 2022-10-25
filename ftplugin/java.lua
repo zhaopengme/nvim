@@ -135,6 +135,18 @@ local config = {
                 template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
             },
             useBlocks = true
+        },
+        configuration = {
+            runtimes = {
+                {
+                    name = "JavaSE-8",
+                    path = home .. "/.sdkman/candidates/java/8.0.345.fx-zulu/"
+                },
+                -- {
+                --     name = "JavaSE-17",
+                --     path = home .. "/.sdkman/candidates/java/17.0.5.fx-zulu/"
+                -- }
+            }
         }
     },
 
