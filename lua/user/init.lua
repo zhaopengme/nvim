@@ -366,7 +366,7 @@ local config = {
                   dap.adapters = {
                     python = {
                       type = "executable",
-                      command = "/usr/bin/python3",
+                      command = "python",
                       args = { "-m", "debugpy.adapter" },
                     },
                     cppdbg = {
@@ -388,7 +388,7 @@ local config = {
                         request = "launch",
                         name = "Launch file",
                         program = "${file}",
-                        pythonPath = function() return "/usr/bin/python3" end,
+                        pythonPath = function() return "python" end,
                       },
                     },
                     cpp = {
